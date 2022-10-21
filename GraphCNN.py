@@ -1,3 +1,5 @@
+import datetime
+
 import yaml
 from yaml import CLoader as Loader, CDumper as Dumper
 
@@ -76,14 +78,15 @@ def main():
 
     for cv in range(n_fold):   
 
-        print ('start fold {}'.format(cv))
+        print ('TSB: {} Start fold {} of {}'.format(datetime.datetime.now(), cv, n_fold))
         Y_pred = np.zeros([Y_test.shape[0], Y_test.shape[1]])
         Y_test = np.zeros([Y_test.shape[0], Y_test.shape[1]])
         j = 0
 
+        # so you use Y.test solely for it's shape?
         for i in range(Y_test.shape[1]):
 
-            print('training model {} of {}'.format(i,Y_test.shape[1]))
+            print('TSB: {} Training model {} of {}'.format(datetime.datetime.now(), i, Y_test.shape[1]))
             data1 = data_IC50.iloc[:,i]
             data1 = np.array(data1)
             data_minmax = data1[~np.isnan(data1)]
@@ -96,6 +99,7 @@ def main():
             train_data = np.array(train_data_split[~np.isnan(train_labels_split)]).astype(np.float32)
 
 
+            # What are they doing here? Someone needs to look at the Validation method.
             list_train, list_val = Validation(n_fold,train_data,train_labels_split)
 
             train_data_V = train_data[list_train[cv]]
@@ -133,7 +137,7 @@ def main():
 
             model = models.cgcnn(L, **params)
 
-            print('Calling fit')
+            print('TSB: {}  Calling fit'.format(datetime.datetime.now()))
             loss, t_step = model.fit(train_data_V, train_labels_V, val_data, val_labels)
 
             Y_pred[:, j] = model.predict(test_data)
