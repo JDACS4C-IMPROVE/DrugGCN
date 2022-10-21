@@ -1,4 +1,6 @@
 import yaml
+from yaml import CLoader as Loader, CDumper as Dumper
+
 import sys, os
 import tensorflow.compat.v1 as tf
 import numpy as np
@@ -20,8 +22,11 @@ def main():
     createFolder('Result')
     config_file = sys.argv[1]
     with open(config_file, 'r') as f:
-        config = yaml.load(f)
+        config = yaml.load(f, Loader=Loader)
     
+    for key, value in config.items():
+        print (key, value)
+
     PPI_data = config["PPI_data"]
     Response_data = config["Response_data"]
     Gene_data = config["Gene_data"]
@@ -42,7 +47,7 @@ def main():
     p = config["p"]
     M = config["M"]
     
-    
+    # read_datia
     data_PPI = pd.read_csv(PPI_data)
     data_PPI.drop(['Unnamed: 0'], axis='columns', inplace=True)
     data_IC50 = pd.read_csv(Response_data)
@@ -50,6 +55,7 @@ def main():
     data_Gene = pd.read_csv(Gene_data)
     data_Gene.drop(['Unnamed: 0'], axis='columns', inplace=True)
     data_Gene=np.array(data_Gene)
+    # return
 
     df = np.array(data_PPI)
     A = coo_matrix(df,dtype=np.float32)
@@ -63,15 +69,21 @@ def main():
     SPC = []
     RMSE = []
 
+    # Train test splits only contain data_Gene
     X_train, X_test, Y_train, Y_test = train_test_split(data_Gene, data_IC50, 
                                                                   test_size=test_size, shuffle=True, random_state=20)
 
 
     for cv in range(n_fold):   
+
+        print ('start fold {}'.format(cv))
         Y_pred = np.zeros([Y_test.shape[0], Y_test.shape[1]])
         Y_test = np.zeros([Y_test.shape[0], Y_test.shape[1]])
         j = 0
-        for i in range(Y.test.shape[1]):
+
+        for i in range(Y_test.shape[1]):
+
+            print('training model {} of {}'.format(i,Y_test.shape[1]))
             data1 = data_IC50.iloc[:,i]
             data1 = np.array(data1)
             data_minmax = data1[~np.isnan(data1)]
@@ -120,6 +132,8 @@ def main():
                 params = common.copy()
 
             model = models.cgcnn(L, **params)
+
+            print('Calling fit')
             loss, t_step = model.fit(train_data_V, train_labels_V, val_data, val_labels)
 
             Y_pred[:, j] = model.predict(test_data)

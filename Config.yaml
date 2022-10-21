@@ -2,7 +2,7 @@
 PPI_data : Data/L1000/groupPPI.csv
 
 # Drug-Respond data (IC50, AUC)  
-Respond_data : Data/Table_S6_GDSC_Drug_response_IC50.csv
+Response_data : Data/Table_S6_GDSC_Drug_response_IC50.csv
 
 # Gene Expression (L1000, Variance1000)
 Gene_data : Data/L1000/groupEXP.csv
