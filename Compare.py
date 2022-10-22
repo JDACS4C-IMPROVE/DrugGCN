@@ -1,4 +1,5 @@
 import yaml
+from yaml import CLoader as Loader, CDumper as Dumper
 import sys
 import pandas as pd
 import numpy as np
@@ -16,7 +17,7 @@ def main():
     createFolder('Result')
     config_file = sys.argv[1]
     with open(config_file, 'r') as f:
-        config = yaml.load(f)
+        config = yaml.load(f, Loader=Loader)
         
     n_fold = config["n_fold"]
     test_size = config["test_size"]
