@@ -1,0 +1,85 @@
+[Global_Params]
+data_url = 'https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/'
+processed_data = 'druggcn_data_processed.tar.gz'
+original_data = 'druggcn_data.tar.gz'
+data_dir = 'data_processed'
+output_dir = 'results'
+ckpt_directory = 'checkpoints'
+summary_dir = 'summaries'
+model_name = 'DrugGCN'
+
+# Number of training epochs.
+num_epochs = 40
+
+# Batch size : Must divide evenly into the dataset sizes.
+batch_size = 4
+
+# Dropout (fc layers): probability to keep hidden neurons. 1 means no dropout.
+dropout = 1
+
+# Initial learning rate.
+learning_rate = 0.02
+
+# Pooling size
+pool = [8]
+
+rng_seed = 20
+
+# momentum 
+momentum = 0.9
+
+# FC Layer size
+dense = [1]
+
+# PPI Network Data
+PPI_data = 'L1000/groupPPI.csv'
+
+# Drug-Response data (IC50, AUC)  
+Response_data = 'Table_S6_GDSC_Drug_response_IC50.csv' 
+
+# Gene Expression (L1000, Var1000)
+Gene_data = 'L1000/groupEXP.csv'
+
+# n-fold Cross Validation
+n_fold = 3
+
+# Test data size
+test_size = 0.25
+
+# Base of exponential decay. 1 means no decay.
+decay_rate = 0.95
+
+# bias and relu (b1relu, b2relu)
+brelu = 'b1relu'
+
+# Number of features.
+F = [10]
+
+# List of polynomial orders, (Filter sizes)
+K = [20]
+
+# Pooling type (mpool1, apool1)
+pool_type = 'mpool1'
+
+# L2 regularizations of weights and biases.
+regularization = 0
+
+Name = 'cgnonv_softmax'
+
+# the following parameters are for Compare.py 
+#krl_k = 10
+#n_jobs = 4
+#Gamma = None
+#Lambda = 1
+# KRR, MLP, BR, KRL, RWEN, GraphCNN
+#Evaluation = GraphCNN # lowercase e
+#verbose = True
+
+
+
+
+
+
+
+
+
