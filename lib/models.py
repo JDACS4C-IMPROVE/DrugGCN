@@ -111,11 +111,11 @@ class base_model(object):
     def fit(self, train_data, train_labels, val_data, val_labels):
         t_process, t_wall = time.process_time(), time.time()
         sess = tf.Session(graph=self.graph)
-        shutil.rmtree(self._get_path('summaries'), ignore_errors=True)
-        writer = tf.summary.FileWriter(self._get_path('summaries'), self.graph)
-        shutil.rmtree(self._get_path('checkpoints'), ignore_errors=True)
-        os.makedirs(self._get_path('checkpoints'))
-        path = os.path.join(self._get_path('checkpoints'), 'model')
+        shutil.rmtree((os.path.join(self._get_path('summaries'), 'summaries')), ignore_errors=True)
+        writer = tf.summary.FileWriter((os.path.join(self._get_path('summaries'), 'summaries')), self.graph)
+        shutil.rmtree((os.path.join(self._get_path('checkpoints'), 'checkpoints')), ignore_errors=True)
+        os.makedirs((os.path.join(self._get_path('checkpoints'), 'checkpoints')))
+        path = os.path.join((os.path.join(self._get_path('checkpoints'), 'checkpoints')), 'model')
         sess.run(self.op_init)
 
         # Training.
@@ -299,7 +299,7 @@ class base_model(object):
         """Restore parameters if no session given."""
         if sess is None:
             sess = tf.Session(graph=self.graph)
-            filename = tf.train.latest_checkpoint(self._get_path('checkpoints'))
+            filename = tf.train.latest_checkpoint(os.path.join(self._get_path('checkpoints'), 'checkpoints'))
             self.op_saver.restore(sess, filename)
         return sess
 
