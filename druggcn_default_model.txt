@@ -4,12 +4,11 @@ processed_data = 'druggcn_data_processed.tar.gz'
 original_data = 'druggcn_data.tar.gz'
 data_dir = 'data_processed'
 output_dir = 'results'
-ckpt_directory = 'checkpoints'
-summary_dir = 'summaries'
+#ckpt_directory = 'models'
 model_name = 'DrugGCN'
 
 # Number of training epochs.
-num_epochs = 40
+epochs = 40
 
 # Batch size : Must divide evenly into the dataset sizes.
 batch_size = 4
@@ -32,13 +31,13 @@ momentum = 0.9
 dense = [1]
 
 # PPI Network Data
-PPI_data = 'L1000/groupPPI.csv'
+ppi_data = 'L1000/groupPPI.csv'
 
 # Drug-Response data (IC50, AUC)  
-Response_data = 'Table_S6_GDSC_Drug_response_IC50.csv' 
+response_data = 'Table_S6_GDSC_Drug_response_IC50.csv' 
 
 # Gene Expression (L1000, Var1000)
-Gene_data = 'L1000/groupEXP.csv'
+gene_data = 'L1000/groupEXP.csv'
 
 # n-fold Cross Validation
 n_fold = 3
@@ -53,10 +52,10 @@ decay_rate = 0.95
 brelu = 'b1relu'
 
 # Number of features.
-F = [10]
+f = [10]
 
 # List of polynomial orders, (Filter sizes)
-K = [20]
+k = [20]
 
 # Pooling type (mpool1, apool1)
 pool_type = 'mpool1'
@@ -64,7 +63,7 @@ pool_type = 'mpool1'
 # L2 regularizations of weights and biases.
 regularization = 0
 
-Name = 'cgnonv_softmax'
+name = 'cgnonv_softmax'
 
 # the following parameters are for Compare.py 
 #krl_k = 10

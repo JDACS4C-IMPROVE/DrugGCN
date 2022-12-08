@@ -6,13 +6,13 @@ file_path = os.path.dirname(os.path.realpath(__file__))
 # additional definitions
 additional_definitions = [
     {
-        "name": "K",
+        "name": "k",
         "type": int,
         "nargs": "+",
         "help": "polynomial orders (i.e. filter sizes)",
     },
     {   
-        "name": "F",
+        "name": "f",
         "type": int,
         "nargs": "+", 
         "help": "number of features",
@@ -48,17 +48,17 @@ additional_definitions = [
         "help": "L2 regularizations of weights and biases",
     },
     {  
-        "name": "PPI_data",
+        "name": "ppi_data",
         "type": str,
         "help": "path to protein-protein interaction (PPI) network data",
     },
     {   
-        "name": "Response_data",
+        "name": "response_data",
         "type": str,
         "help": "path to drug response data",
     },
     {   
-        "name": "Gene_data",
+        "name": "gene_data",
         "type": str, 
         "help": "path to gene expression data",
     },  

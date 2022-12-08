@@ -1,4 +1,4 @@
-import yaml
+#import yaml
 import sys, os
 import tensorflow.compat.v1 as tf
 import numpy as np
@@ -16,6 +16,7 @@ from lib import models, graph, coarsening, utils
 from scipy.sparse import coo_matrix
 import druggcn
 import candle
+from pathlib import Path
 
 file_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -43,16 +44,17 @@ def run(gParameters):
         print("Default GPU Device:{}".format(tf.test.gpu_device_name()))
     else:
         print("GPU not available")
-    createFolder('Result')
 
-    #config_file = sys.argv[1]
-    #with open(config_file, 'r') as f:
-        #config = yaml.load(f)
-        #config = yaml.load(f, Loader=yaml.Loader)
+    fdir = Path(__file__).resolve().parent
+    if args.output_dir is not None:
+        outdir = args.output_dir
+    else:
+        outdir = fdir/f"/results"
+    os.makedirs(outdir, exist_ok=True)
     
-    PPI_data = args.PPI_data
-    Response_data = args.Response_data
-    Gene_data = args.Gene_data
+    PPI_data = args.ppi_data
+    Response_data = args.response_data
+    Gene_data = args.gene_data
     n_fold = args.n_fold
     test_size = args.test_size
     num_epochs = args.epochs
@@ -64,9 +66,9 @@ def run(gParameters):
     learning_rate = args.learning_rate
     decay_rate = args.decay_rate
     momentum = args.momentum
-    Name = args.Name
-    F = args.F
-    K = args.K
+    Name = args.name
+    F = args.f
+    K = args.k
     p = args.pool
     M = args.dense
     
@@ -142,20 +144,20 @@ def run(gParameters):
             common['K']              = K
             common['p']              = p
             common['M']              = M
-            common['dir_name']       = args.output_dir
+            common['dir_name']       = outdir
 
             if True:
                 name = Name
                 params = common.copy()
 
             model = models.cgcnn(L, **params)
-            loss, t_step = model.fit(train_data_V, train_labels_V, val_data, val_labels, args.ckpt_directory, args.summary_dir)
+            loss, t_step = model.fit(train_data_V, train_labels_V, val_data, val_labels)
 
             Y_pred[:, j] = model.predict(test_data)
             Y_test[:, j] = test_labels
             j = j+1
 
-        np.savez((str(args.outdir) + "/" + "GraphCNN_CV_{}".format(cv)), Y_true=Y_test, Y_pred=Y_pred)
+        np.savez((str(outdir) + "/" + "GraphCNN_CV_{}".format(cv)), Y_true=Y_test, Y_pred=Y_pred)
 
 
 def main():
