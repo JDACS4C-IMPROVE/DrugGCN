@@ -16,6 +16,8 @@ from lib import models, graph, coarsening, utils
 from scipy.sparse import coo_matrix
 import druggcn
 import candle
+from candle.file_utils import directory_tree_from_parameters
+from candle.file_utils import get_file
 from pathlib import Path
 
 file_path = os.path.dirname(os.path.realpath(__file__))
@@ -72,11 +74,23 @@ def run(gParameters):
     p = args.pool
     M = args.dense
     
-    data_PPI = pd.read_csv(str(args.data_dir) + "/" + PPI_data)
+    # get data from server or candle_
+    gParameters["_data_dir"], gParameters["_output_dir"] = directory_tree_from_parameters(
+             gParameters, gParameters["output_dir"])
+    print('_data_dir = {}, _output_dir = {}'.format(gParameters["_data_dir"], gParameters["_output_dir"]))
+
+    # get data # FIX HARD CODED VARIABLE #
+    fname="Data.tar.gz"
+    origin = gParameters['data_url'] + "/" + fname
+    get_file(fname, origin, unpack=False, md5_hash=None, datadir=gParameters['_data_dir'])
+
+    # load the data. It appears get_file downloads to _data_dir/common
+    # and when get_file untars the tarball the Data directory gets created
+    data_PPI = pd.read_csv(str(gParameters['_data_dir']) + "/common/Data/" + PPI_data)
     data_PPI.drop(['Unnamed: 0'], axis='columns', inplace=True)
-    data_IC50 = pd.read_csv(str(args.data_dir) + "/" + Response_data)
+    data_IC50 = pd.read_csv(str(gParameters['_data_dir']) + "/common/Data/" + Response_data)
     data_IC50.drop(['Unnamed: 0'], axis='columns', inplace=True)
-    data_Gene = pd.read_csv(str(args.data_dir) + "/" + Gene_data)
+    data_Gene = pd.read_csv(str(gParameters['_data_dir']) + "/common/Data/" + Gene_data)
     data_Gene.drop(['Unnamed: 0'], axis='columns', inplace=True)
     data_Gene = np.array(data_Gene)
 
