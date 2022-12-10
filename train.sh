@@ -5,7 +5,7 @@
 # arg 3 CANDLE_CONFIG
 
 ### Path to your CANDLEized model's main Python script###
-CANDLE_MODEL=druggcn_baseline_tensorflow.py
+CANDLE_MODEL=/usr/local/DrugGCN/druggcn_baseline_tensorflow.py
 
 if [ $# -lt 2 ] ; then
         echo "Illegal number of parameters"
