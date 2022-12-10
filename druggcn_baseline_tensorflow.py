@@ -110,12 +110,14 @@ def run(gParameters):
                                                                   test_size=test_size, shuffle=True, random_state=args.rng_seed)
 
 
-    for cv in range(n_fold):   
+    for cv in range(n_fold):
+        print ('training fold {} of {}'.format(cv, n_fold))
         Y_pred = np.zeros([Y_test.shape[0], Y_test.shape[1]])
         Y_test = np.zeros([Y_test.shape[0], Y_test.shape[1]])
         j = 0
         #for i in range(Y.test.shape[1]):
         for i in range(Y_test.shape[1]):
+            print('calling fit on model {} of {}'.format(i, Y_test.shape[1]))
             data1 = data_IC50.iloc[:,i]
             data1 = np.array(data1)
             data_minmax = data1[~np.isnan(data1)]
