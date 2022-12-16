@@ -124,7 +124,6 @@ class base_model(object):
         indices = collections.deque()
         num_steps = int(self.num_epochs * train_data.shape[0] / self.batch_size)
         for step in range(1, num_steps+1):
-            print ('in fit, on step {} of {}'.format(step, num_steps+1))
             # Be sure to have used all the samples before using one a second time.
             if len(indices) < self.batch_size:
                 indices.extend(np.random.permutation(train_data.shape[0]))
