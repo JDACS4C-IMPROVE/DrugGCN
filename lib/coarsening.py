@@ -142,6 +142,11 @@ def metis(W, levels, rid=None):
 # Coarsen a graph given by rr,cc,vv.  rr is assumed to be ordered
 def metis_one_level(rr,cc,vv,rid,weights):
 
+    #print("rr shape: {}".format(rr.shape))
+    #print("cc shape: {}".format(cc.shape))
+    #print("vv shape: {}".format(vv.shape))
+    #print("rid shape: {}".format(rid.shape))
+    #print(rr)
     nnz = rr.shape[0]
     N = rr[nnz-1] + 1
 
@@ -161,8 +166,37 @@ def metis_one_level(rr,cc,vv,rid,weights):
             rowstart[count+1] = ii
             count = count + 1
 
-    for ii in range(N):
+    #for ii in range(N):
+    for ii in range(len(rid)):
         tid = rid[ii]
+        try:
+            if not marked[tid]:
+                wmax = 0.0
+                rs = rowstart[tid]
+                marked[tid] = True
+                bestneighbor = -1
+                for jj in range(rowlength[tid]):
+                    nid = cc[rs+jj]
+                    if marked[nid]:
+                        tval = 0.0
+                    else:
+                        tval = vv[rs+jj] * (1.0/weights[tid] + 1.0/weights[nid])
+                    if tval > wmax:
+                        wmax = tval
+                        bestneighbor = nid
+
+                cluster_id[tid] = clustercount
+
+                if bestneighbor > -1:
+                    cluster_id[bestneighbor] = clustercount
+                    marked[bestneighbor] = True
+
+                clustercount += 1
+
+        except IndexError as e:
+            print(f"{e}")
+            continue
+        """
         if not marked[tid]:
             wmax = 0.0
             rs = rowstart[tid]
@@ -185,6 +219,7 @@ def metis_one_level(rr,cc,vv,rid,weights):
                 marked[bestneighbor] = True
 
             clustercount += 1
+        """
 
     return cluster_id
 
