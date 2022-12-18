@@ -2,8 +2,8 @@
 data_url = 'https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/'
 processed_data = 'druggcn_data_processed.tar.gz'
 original_data = 'druggcn_data.tar.gz'
-data_dir = 'data_processed'
-output_dir = 'results'
+#data_dir = 'data_processed'
+#output_dir = 'results'
 #ckpt_directory = 'models'
 model_name = 'DrugGCN'
 
@@ -63,7 +63,9 @@ pool_type = 'mpool1'
 # L2 regularizations of weights and biases.
 regularization = 0
 
-name = 'cgnonv_softmax'
+levels = 6
+
+#name = 'cgnonv_softmax'
 
 # the following parameters are for Compare.py 
 #krl_k = 10

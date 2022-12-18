@@ -63,9 +63,9 @@ additional_definitions = [
         "help": "path to gene expression data",
     },  
     {   
-        "name": "summary_dir",
-        "type": str, 
-        "help": "path to folder for tensorflow summary data",
+        "name": "levels",
+        "type": int, 
+        "help": "number of coarsened graphs",
     },    
 ]
 
