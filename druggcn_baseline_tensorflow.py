@@ -126,13 +126,15 @@ def run(gParameters):
                                                                   test_size=test_size, shuffle=True, random_state=args.rng_seed)
     
             train_data = np.array(train_data_split[~np.isnan(train_labels_split)]).astype(np.float32)
+            train_labels = np.array(train_labels_split[~np.isnan(train_labels_split)]).astype(np.float32)
 
-            list_train, list_val = Validation(n_fold,train_data,train_labels_split)
+            list_train, list_val = Validation(n_fold,train_data,train_labels,args.val_size,args.rng_seed)
+            print(list_train)
+            print(list_val)
 
             train_data_V = train_data[list_train[cv]]
             val_data = train_data[list_val[cv]]
             test_data = np.array(test_data_split[:]).astype(np.float32)
-            train_labels = np.array(train_labels_split[~np.isnan(train_labels_split)]).astype(np.float32)
             train_labels_V = train_labels[list_train[cv]]
             val_labels = train_labels[list_val[cv]]
             test_labels = np.array(test_labels_split[:]).astype(np.float32)
@@ -163,6 +165,8 @@ def run(gParameters):
             params = common.copy()
 
             model = models.cgcnn(L, **params)
+            print(train_data_V)
+            print(val_data)
             loss, t_step = model.fit(train_data_V, train_labels_V, val_data, val_labels)
 
             # make predictions with test dataset
