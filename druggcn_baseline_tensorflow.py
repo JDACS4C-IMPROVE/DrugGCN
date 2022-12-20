@@ -129,8 +129,6 @@ def run(gParameters):
             train_labels = np.array(train_labels_split[~np.isnan(train_labels_split)]).astype(np.float32)
 
             list_train, list_val = Validation(n_fold,train_data,train_labels,args.val_size,args.rng_seed)
-            print(list_train)
-            print(list_val)
 
             train_data_V = train_data[list_train[cv]]
             val_data = train_data[list_val[cv]]
@@ -165,15 +163,11 @@ def run(gParameters):
             params = common.copy()
 
             model = models.cgcnn(L, **params)
-            print(train_data_V)
-            print(val_data)
             loss, t_step = model.fit(train_data_V, train_labels_V, val_data, val_labels)
 
             # make predictions with test dataset
             Y_pred[:, j] = model.predict(test_data)
             Y_test[:, j] = test_labels
-            print(Y_pred)
-            print(Y_test)
 
             # make predictions with validation dataset
             val_pred = pd.DataFrame({drug_list[j]: model.predict(val_data)})
