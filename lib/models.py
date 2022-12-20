@@ -124,6 +124,7 @@ class base_model(object):
         indices = collections.deque()
         num_steps = int(self.num_epochs * train_data.shape[0] / self.batch_size)
         for step in range(1, num_steps+1):
+
             # Be sure to have used all the samples before using one a second time.
             if len(indices) < self.batch_size:
                 indices.extend(np.random.permutation(train_data.shape[0]))
@@ -161,8 +162,11 @@ class base_model(object):
 #         print('validation accuracy: peak = {:.2f}, mean = {:.2f}'.format(max(accuracies), np.mean(accuracies[-10:])))
         writer.close()
         sess.close()
-        
-        t_step = (time.time() - t_wall) / num_steps
+        try:
+            t_step = (time.time() - t_wall) / num_steps
+        except ZeroDivisionError as e:
+            print(e)
+            t_step = (time.time() - t_wall)
         return losses, t_step
 
     def get_var(self, name):
