@@ -95,8 +95,6 @@ class base_model(object):
         t_process, t_wall = time.process_time(), time.time()
         predictions, loss = self.predict(data, labels, sess)
         # modified
-        print(labels)
-        print(predictions)
 #         ncorrects = sum(predictions == labels)
 #         accuracy = 100 * sklearn.metrics.accuracy_score(labels, predictions)
 #         f1 = 100 * sklearn.metrics.f1_score(labels, predictions, average='weighted')
