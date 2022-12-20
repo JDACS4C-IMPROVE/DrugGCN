@@ -8,7 +8,8 @@ original_data = 'druggcn_data.tar.gz'
 model_name = 'DrugGCN'
 
 # Number of training epochs.
-epochs = 40
+#epochs = 40
+epochs = 2
 
 # Batch size : Must divide evenly into the dataset sizes.
 batch_size = 4
@@ -39,11 +40,14 @@ response_data = 'Table_S6_GDSC_Drug_response_IC50.csv'
 # Gene Expression (L1000, Var1000)
 gene_data = 'L1000/groupEXP.csv'
 
-# n-fold Cross Validation
-n_fold = 3
+# n-fold Cross Validation - must be at least 1
+n_fold = 1
 
 # Test data size
 test_size = 0.25
+
+# val data size for when n_fold is 1
+val_size = 0.25
 
 # Base of exponential decay. 1 means no decay.
 decay_rate = 0.95
@@ -67,7 +71,7 @@ levels = 6
 
 #name = 'cgnonv_softmax'
 
-# the following parameters are for Compare.py 
+### the following parameters are for Compare.py ###
 #krl_k = 10
 #n_jobs = 4
 #Gamma = None

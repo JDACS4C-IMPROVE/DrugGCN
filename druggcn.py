@@ -37,6 +37,11 @@ additional_definitions = [
         "type": float, 
         "help": "test data size",
     },
+    {   
+        "name": "val_size",
+        "type": float, 
+        "help": "validation data size",
+    },
     {  
         "name": "n_fold",
         "type": int, 
