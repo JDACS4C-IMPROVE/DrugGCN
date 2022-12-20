@@ -13,9 +13,6 @@ def Validation(n_fold,X,Y,size=0.25,seed=20):
     for i in range(X.shape[0]):
         list_train.append(i)
 
-    print(X.shape)
-    print(Y.shape)
-
     # if condition returns False, AssertionError is raised:
     assert n_fold > 0, "n_fold should be at least 1"
     
@@ -23,9 +20,6 @@ def Validation(n_fold,X,Y,size=0.25,seed=20):
     if n_fold-1 == 0: 
         list_val = []
         X_train, X_val, Y_train, Y_val = train_test_split(X, Y, test_size=size, shuffle=True, random_state=seed)
-        print(Y_val)
-        print(list(Y_val.index))
-        print(len(Y_val.index))
         for j in list(Y_val.index):
             list_val.append(j)
         list_train_fold.append(np.setdiff1d(list_train,list_val))
