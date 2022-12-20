@@ -86,10 +86,10 @@ def run(gParameters):
 
     df = np.array(data_PPI)
     A = coo_matrix(df, dtype=np.float32)
-    print(A.nnz)
+    #print(A.nnz)
     graphs, perm = coarsening.coarsen(A, levels=args.levels, self_connections=False)
     L = [graph.laplacian(A, normalized=True) for A in graphs]
-    graph.plot_spectrum(L)
+    #graph.plot_spectrum(L)
 
     n_fold = n_fold
     PCC = []
