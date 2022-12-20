@@ -8,8 +8,7 @@ original_data = 'druggcn_data.tar.gz'
 model_name = 'DrugGCN'
 
 # Number of training epochs.
-#epochs = 40
-epochs = 2
+epochs = 40
 
 # Batch size : Must divide evenly into the dataset sizes.
 batch_size = 4
@@ -41,7 +40,7 @@ response_data = 'Table_S6_GDSC_Drug_response_IC50.csv'
 gene_data = 'L1000/groupEXP.csv'
 
 # n-fold Cross Validation - must be at least 1
-n_fold = 1
+n_fold = 3
 
 # Test data size
 test_size = 0.25
@@ -79,12 +78,3 @@ levels = 6
 # KRR, MLP, BR, KRL, RWEN, GraphCNN
 #Evaluation = GraphCNN # lowercase e
 #verbose = True
-
-
-
-
-
-
-
-
-
