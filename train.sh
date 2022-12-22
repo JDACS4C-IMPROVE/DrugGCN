@@ -46,6 +46,7 @@ echo "using CANDLE_CONFIG ${CANDLE_CONFIG}"
 
 # Set up environmental variables and execute model
 source activate /opt/conda/druggcn_py3.7
+export TF_CPP_MIN_LOG_LEVEL=3
 
 echo "running command ${CMD}"
 CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES} CANDLE_DATA_DIR=${CANDLE_DATA_DIR} $CMD
