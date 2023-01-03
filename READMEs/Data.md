@@ -15,7 +15,7 @@ Preprocessing scripts are often required to generate ML data from raw data. Howe
 
 # Raw data
 The raw data includes the following for the L1000 and Var1000 datasets:
-1) Gene expression data. `EXP.csv`: Gene expression data for 734 cell lines that can be obtained from the authors' GitHub page, [GDSC_DATASET_S1-S12.zip](https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip), `Table_S1_GDSC_Gene_expression.csv`.
+1) Gene expression data. `EXP.csv`: Gene expression data for 734 cell lines obtained from the authors' GitHub page, [GDSC_DATASET_S1-S12.zip](https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip), `Table_S1_GDSC_Gene_expression.csv`.
 2) Protein info. `PPI_INFO.txt`: List of proteins including their display names and descriptions from the STRING database. This data can be downloaded from the STRING database [here](https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz).
 3) Protein links. `PPI_LINK.txt`: Protein network data (full network, scored links between proteins) from the STRING database. This data can be downloaded from the STRING database [here](https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz).
 4) List of genes. `LIST.txt`: 663 or 1000 genes for the L1000 and Var1000 datasets respectively.
