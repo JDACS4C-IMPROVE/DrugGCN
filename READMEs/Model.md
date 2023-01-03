@@ -27,9 +27,9 @@ Four evaluation schemes were used for the analysis of prediction performance.
 
 
 ## URLs
-- Original GitHub: [https://github.com/BML-cbnu/DrugGCN](https://github.com/BML-cbnu/DrugGCN)
-- IMPROVE GitHub: [https://github.com/JDACS4C-IMPROVE/DrugGCN/tree/develop](https://github.com/JDACS4C-IMPROVE/DrugGCN/tree/develop)
-- Data: https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/
+- [Original GitHub](https://github.com/BML-cbnu/DrugGCN)
+- [IMPROVE GitHub](https://github.com/JDACS4C-IMPROVE/DrugGCN/tree/develop)
+- [Data](https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/)
 
 
 ## Reference
