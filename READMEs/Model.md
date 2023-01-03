@@ -14,7 +14,7 @@ The primary data sources that have been used to construct datasets for model tra
 
 
 ## Data and preprocessing
-CCL omics data and treatment response data (IC50 and AUC) were downloaded from the authors' GitHub page, [GDSC_DATASET_S1-S12.zip]https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip. The [protein links](https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz) and [protein info](https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz) files (version 11.5) for *Homo sapiens* can be obtained from the STRING website. Refer to [Data](Data.md) for more info regarding the raw data provided with the original DrugGCN model repo and preprocessing scripts allowing to generate ML data for model training and testing.
+CCL omics data and treatment response data (IC50 and AUC) were downloaded from the authors' GitHub page, [GDSC_DATASET_S1-S12.zip](https://github.com/Jinyu2019/Suppl-data-BBpaper/blob/master/GDSC_DATASET_S1-S12.zip). The [protein links](https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz) and [protein info](https://stringdb-static.org/download/protein.info.v11.5/9606.protein.info.v11.5.txt.gz) files (version 11.5) for *Homo sapiens* can be obtained from the STRING website. Refer to [Data](Data.md) for more info regarding the raw data provided with the original DrugGCN model repo and preprocessing scripts allowing to generate ML data for model training and testing.
 
 
 ## Evaluation
