@@ -29,12 +29,12 @@ The ML data files are available in FTP: https://ftp.mcs.anl.gov/pub/candle/publi
 The ML data files include the following:
 
 - __Cancer features__. L1000 and Var1000 folders with gene expression and protein-protein interaction files: 
-  - groupEXP.csv. Gene expression data of selected genes.
-  - groupEXP_foldChange.csv. Fold change of gene expression data of selected genes.
-  - groupPPI.csv. Protein-protein interaction data of selected genes where values are weights of the interactions that reflect the amount of available evidence of the interaction between two genes.
+  - `groupEXP.csv`. Gene expression data of selected genes.
+  - `groupEXP_foldChange.csv`. Fold change of gene expression data of selected genes.
+  - `groupPPI.csv`. Protein-protein interaction data of selected genes where values are weights of the interactions that reflect the amount of available evidence of the interaction between two genes.
 - __Response data__. IC50 or AUC values of 201 drugs and 734 cell lines.
-  - Table_S6_GDSC_Drug_response_IC50.csv
-  - Table_S7_GDSC_Drug_response_AUC.csv
+  - `Table_S6_GDSC_Drug_response_IC50.csv`
+  - `Table_S7_GDSC_Drug_response_AUC.csv`
 
 The user can specify which dataset, L1000 or Var1000, and which response data, IC50 or AUC, to use when training and testing the model.
 
