@@ -6,9 +6,9 @@ We distinguish between two types of data:
 
 As part of model curation, the original data that is provided with public DRP models is copied to an FTP site. The full path is https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/ . For each model, a subdirectory is created for storing the model's data.
 
-The raw data and ML data are located, respectively, in `data` and `data_processed` folders. E.g., the data for DrugGCN can be found in:
-- https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/data/
-- https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/data_processed/
+The raw data and ML data are located, respectively, in `data` and `data_processed` folders. The data for DrugGCN can be found in:
+- `data`: https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data.tar.gz  
+- `data_processed`: https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data_processed.tar.gz  
 
 Preprocessing scripts are often required to generate ML data from raw data. However, not all public repositories provide the necessary scripts.
 
