@@ -6,7 +6,7 @@ We distinguish between two types of data:
 
 As part of model curation, the original data that is provided with public DRP models is copied to an FTP site. The full path is https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/ . For each model, a subdirectory is created for storing the model's data.
 
-The raw data and ML data are located, respectively, in `data` and `data_processed` folders. The data for DrugGCN can be found in: https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/
+The raw data and ML data are located, respectively, in `data` and `data_processed` folders. The data for DrugGCN can be found in FTP: https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/
 
 Preprocessing scripts are often required to generate ML data from raw data. However, not all public repositories provide the necessary scripts.
 
@@ -18,7 +18,7 @@ The raw data includes the following for the L1000 and Var1000 datasets:
 3) Protein links. `PPI_LINK.txt`: Protein network data (full network, scored links between proteins) from the STRING database. This data can be downloaded from the STRING database [here](https://stringdb-static.org/download/protein.links.v11.5/9606.protein.links.v11.5.txt.gz).
 4) List of genes. `LIST.txt`: List of 663 or 1000 genes for the L1000 and Var1000 datasets respectively.
 
-The raw data is available in: https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data.tar.gz
+The raw data is available in FTP: https://ftp.mcs.anl.gov/pub/candle/public/improve/model_curation_data/DrugGCN/druggcn_data.tar.gz
 
 
 # ML data
