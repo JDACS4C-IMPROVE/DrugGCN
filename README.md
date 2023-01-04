@@ -1,41 +1,31 @@
-## Installation
+# DrugGCN
+A framework for the prediction of **Drug** response using a Graph Convolutional Network (**GCN**).
 
-1. Clone repository.
+## Model
+
+See [Model](READMEs/Model.md) for more details.
+
+## Data
+
+See [Data](READMEs/Data.md) for more details.
+
+## Preprocessing input data
+
+Prepare the following files and save them to a folder: `groupEXP.csv`, `groupEXP_foldChange.csv`, `groupPPi.csv`,  `LIST.txt`.
+
 ```
-git clone https://github.com/BML-cbnu/DrugGCN
-cd DrugGCN
+python dataProcess.py -h
+python dataProcess.py inputPath outputPath
 ```
-2. Install the requirments.
+
+Example
+
 ```
-pip install -r requirements.txt
+python dataProcess.py data/L1000/ data_processed/L1000/
 ```
-## GCN configuration
 
-Input:
+## Training the model
 
-    n of samples
-    p of features
-    d of drugs
-
-    Gene_data: (n * p) Gene Expression matrix.
-    PPI_data: (p * p) PPI Network matrix.
-    Respond_data: (n * d) Drug-Respond matrix.
-
-    F: Number of features.
-    K: List of polynomial orders. (Filter sizes)
-    p: Pooling size.
-
-Output:
-
-    Y_pred : y * d ( y is a test set of n )
-
-## Reproducing our experiments
-   
-Edit the Configuration file to produce experiments differently.
-
-    vim config.yaml
-
-Run experiments.
-
-    python GraphCNN.py config.yaml
-    python Compare.py config.yaml
+```
+python druggcn_baseline_tensorflow.py
+```
