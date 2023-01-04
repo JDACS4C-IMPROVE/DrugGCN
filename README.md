@@ -29,3 +29,5 @@ python dataProcess.py data/L1000/ data_processed/L1000/
 ```
 python druggcn_baseline_tensorflow.py
 ```
+
+Changes to the hyperparameters of the model can be adjusted in this file `druggcn_default_model.txt`.
