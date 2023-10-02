@@ -107,17 +107,37 @@ def run(gParameters):
     data_IC50_scaled = pd.DataFrame(scaler.fit_transform(data_IC50.copy()))
     # get cell ids for test dataset
     test_cell_ids = cell_id[cell_id.index.isin(list(Y_test.index))]
-
+        
+    # loop through each n fold and drug to get train dataset size
+    batch_sizes = []
+    for cv in range(n_fold): 
+        for i in range(data_IC50_scaled.shape[1]):
+            data1 = data_IC50_scaled.iloc[:,i]
+            train_data_split, test_data_split, train_labels_split, test_labels_split = train_test_split(data_Gene, data1, 
+                                                                    test_size=test_size, shuffle=True, random_state=args.rng_seed)
+        
+            train_data = np.array(train_data_split[~np.isnan(train_labels_split)]).astype(np.float32)
+            train_labels = np.array(train_labels_split[~np.isnan(train_labels_split)]).astype(np.float32)
+            list_train, list_val = Validation(n_fold,train_data,train_labels,args.val_size,args.rng_seed)
+            batch_sizes.append(train_data[list_train[cv]].shape[0])
+    # get minimum batch size
+    min_batch_size = min(batch_sizes)
+    if batch_size > min_batch_size:
+        print(f"Please use a batch size equal to or less than {min_batch_size}.")
+        print("Exiting...")
+        sys.exit(1)
+    
+    # train model
     for cv in range(n_fold):   
         Y_pred = np.zeros([Y_test.shape[0], Y_test.shape[1]])
         Y_test = np.zeros([Y_test.shape[0], Y_test.shape[1]])
-        print(Y_test.shape)
         
         # initialize dataframes to hold predictions and true values for validation dataset per drug
         all_val_pred = pd.DataFrame()
         all_val_test = pd.DataFrame()
 
         j = 0
+        
         # loop through each drug
         for i in range(Y_test.shape[1]):
             data1 = data_IC50_scaled.iloc[:,i]
