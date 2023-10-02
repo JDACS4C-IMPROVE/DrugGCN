@@ -29,6 +29,7 @@ import sklearn
 import scipy.sparse
 import numpy as np
 import os, time, collections, shutil
+import sys
 
 
 #NFEATURES = 28**2
@@ -121,12 +122,20 @@ class base_model(object):
         losses = []
         indices = collections.deque()
         num_steps = int(self.num_epochs * train_data.shape[0] / self.batch_size)
+        
         for step in range(1, num_steps+1):
 
             # Be sure to have used all the samples before using one a second time.
             if len(indices) < self.batch_size:
                 indices.extend(np.random.permutation(train_data.shape[0]))
-            idx = [indices.popleft() for i in range(self.batch_size)]
+
+            try:
+                idx = [indices.popleft() for i in range(self.batch_size)]
+
+            except IndexError:
+                print(f"Please use a batch size equal to or less than the train dataset size of {train_data.shape[0]}.")
+                print("Exiting...")
+                sys.exit(1)
 
             batch_data, batch_labels = train_data[idx,:], train_labels[idx]
             if type(batch_data) is not np.ndarray:
